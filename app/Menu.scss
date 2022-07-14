@@ -1,36 +1,6 @@
 @import './Common.scss';
 
-.ms-menu-panel {
-    background-color: $toolbar-background-color;
-	overflow-x: hidden !important;
-    width: 100%;
-    white-space: nowrap;
-    font-family: $toolbar-font-family;
-    font-size: $toolbar-font-size;
-
-    ul {
-        text-decoration: none;
-        padding: 0;
-        margin: 0;
-        margin-left: 2em;
-        padding-top: 4px;
-        padding-bottom: 4px;
-    }
-
-    a {
-        color: $toolbar-text-color;
-        display: inline-block;
-        vertical-align: middle;
-        text-decoration: none;
-        font-weight: normal;
-        padding-top: 4px;
-        padding-bottom: 4px;
-        padding-left: 8px;
-        padding-right: 8px;
-        border-radius: 4px;
-    }
-
-    a:hover, a.ms-active {
-        background-color: $toolbar-hover-background-color;
-    }
+.cet-titlebar {
+    font-family: $toolbar-font-family!important;
+    color: $toolbar-text-color!important;
 }

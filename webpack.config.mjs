@@ -49,27 +49,21 @@ const config = {
         ]
     },
     externals: [
-        function () {
-            var arg1 = arguments[0];
-            var arg2 = arguments[1];
-            var arg3 = arguments[2];
-
-            if (/^moroboxai.*$/.test(arg2)) {
-                return arg3();
-            }
-
-            nodeExternals()(arg1, arg2, arg3);
+        function ({context, request}, callback) {
+            nodeExternals()({context, request}, callback);
         },
         {
+            React: 'react',
             MoroboxAIPlayerSDK: 'moroboxai-player-sdk',
             MoroboxAIPlayer: 'moroboxai-player-web',
-            Player: 'moroboxai-player-react'
+            MoroboxAIEditorSDK: 'moroboxai-editor-sdk',
+            Player: 'moroboxai-player-react',
         }
     ],
     plugins: [
         new CleanWebpackPlugin(),
 		new HtmlWebpackPlugin({
-            title: 'React Electron App'
+            title: 'MoroboxAI Studio'
         }),
     ],
     devServer: {

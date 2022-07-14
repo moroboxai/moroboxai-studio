@@ -27,7 +27,7 @@ gulp.task('lint', () => merge([
 		.pipe(gulpTslint.report())
 ]));
 
-gulp.task('build', () => {
+gulp.task('build-index', () => {
 	return gulp.src('./src/index.ts')
 		.pipe(gulpWebpack({
 			context: path.resolve('src'),
@@ -49,9 +49,45 @@ gulp.task('build', () => {
 				extensions: ['.ts', '.js']
 			},
 			node: {
-			  __dirname: false,
-			  __filename: false
+				__dirname: false,
+				__filename: false
 			}
 		}))
 		.pipe(gulp.dest('build'));
 });
+
+gulp.task('build-preload', () => {
+	return gulp.src('./src/preload.ts')
+		.pipe(gulpWebpack({
+			context: path.resolve('src'),
+			entry: './preload.ts',
+			mode: isDev ? 'development' : 'production',
+			target: 'electron-preload',
+			module: {
+				rules: [{
+					test: /\.tsx?$/,
+					use: 'ts-loader',
+					exclude: /node_modules/
+				}]
+			},
+			output: {
+				filename: 'preload.cjs',
+				path: path.resolve("build")
+			},
+			resolve: {
+				extensions: ['.ts', '.js']
+			},
+			node: {
+				__dirname: false,
+				__filename: false
+			}
+		}))
+		.pipe(gulp.dest('build'));
+});
+
+gulp.task('copy-icon', () => {
+	return gulp.src('./src/icon.svg')
+		.pipe(gulp.dest('build'));
+});
+
+gulp.task('build', gulp.series('build-preload', 'build-index', 'copy-icon'));

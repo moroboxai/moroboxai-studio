@@ -5,7 +5,6 @@ import React from "react";
 import FileTree from "./generic/FileTree";
 import FileTreeItem, {IFile} from "./generic/FileTreeItem";
 import path from 'path';
-import { remote } from 'electron';
 
 type WorkspaceProps = {
     directory: string;
