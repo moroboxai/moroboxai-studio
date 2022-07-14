@@ -1,0 +1,44 @@
+@import './Common.scss';
+
+.ms-workspace-panel {
+    background-color: $workspace-background-color;
+	overflow-x: hidden !important;
+    width: 100%;
+    white-space: nowrap;
+    font-family: $filetree-font-family;
+    font-size: $filetree-font-size;
+
+    a {
+        color: $workspace-text-color;
+        text-decoration: none;
+        line-height: $filetree-line-height;
+        font-weight: normal;
+
+        .ms-fab {
+            margin-right: 0.5em;
+            width: $filetree-icon-size;
+            height: $filetree-icon-size;
+        }
+    }
+
+    ul {
+        list-style: none;
+        padding: 0;
+        margin: 0;
+        padding-left: $filetree-indent;
+    }
+
+    >ul {
+        padding-left: 0.5em;
+    }
+
+    .ms-filetree-header>a {
+        font-weight: bold;
+        text-transform: uppercase;
+    }
+
+    .ms-filetree-item {
+        padding: 0;
+        margin: 0;
+    }
+}
